@@ -1,0 +1,43 @@
+{
+  "DBHost": "mongodb://localhost:27017/bookdb",
+  "DBOptions": {
+    "useMongoClient": true,
+    "socketTimeoutMS": 0,
+    "keepAlive": true,
+    "reconnectTries": 30,
+    "connectTimeoutMS": 30000
+  },
+  "DB4xOptions": {
+    "server": { "socketOptions": {
+      "keepAlive": 1,
+      "connectTimeoutMS": 30000 }
+    },
+    "replset": { "socketOptions": {
+      "keepAlive": 1,
+      "connectTimeoutMS": 30000 }
+    }
+  },
+  "DB4xExampleOptions": {
+    "server": {
+      "socketOptions": {
+        "socketTimeoutMS": 0,
+        "keepAlive": true
+      },
+      "reconnectTries": 30
+    },
+    "replset": {
+      "socketOptions": {
+        "socketTimeoutMS": 0,
+        "keepAlive": true
+      },
+      "reconnectTries": 30
+    },
+    "mongos": {
+      "socketOptions": {
+        "socketTimeoutMS": 0,
+        "keepAlive": true
+      },
+      "reconnectTries": 30
+    }
+  }
+}

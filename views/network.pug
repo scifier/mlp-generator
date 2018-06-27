@@ -1,0 +1,142 @@
+extends ./partials/layout
+block content
+    script(src='/lib/highcharts/highcharts.js')
+    //- script(src='/lib/highcharts/boost.js')
+    script(src='/lib/highcharts/exporting.js')
+    script(src='/lib/d3/d3.v4.min.js')
+    script(src='/lib/d3/d3-selection-multi.v1.js')
+    script(src='/js/network-graph.js')
+    script(src='/js/ajax.js')
+    //- .well
+    //-   h1 Networks
+    //- div.lead This page provides the list of all networks
+    div.col-lg-4
+      div.panel.panel-info
+        div.panel-heading.text-centered
+          h3.panel-title
+            strong Network #{doc.id}
+        div.panel-body(style='padding-left: 0; padding-right: 0;')
+          ul.nav.nav-tabs
+            li.active
+              a(data-toggle="tab" href="#network-panel")
+                h3.panel-title
+                  i.fa.fa-info-circle
+                  //- i.fa.fa-info
+                  | Network
+            li
+              a(data-toggle="tab" href="#json-panel")
+                h3.panel-title
+                  i.fa.fa-list-alt
+                  //- i.fa.fa-list
+                  | JSON 
+        div.tab-content
+          div.tab-pane.fade.in.active(id="network-panel")
+            div.panel-body
+              div.alert.alert-info
+                strong networkOptions
+                p activation: !{doc.activation}
+                p hiddenLayers: [!{doc.hiddenLayers}]
+              div.alert.alert-info
+                strong trainingOptions
+                p iterations: !{doc.iterations}
+                p errorThresh: !{doc.errorThresh}
+                p learningRate: !{doc.learningRate}
+                p momentum: !{doc.momentum}
+              div.alert.alert-danger
+                button.center-block.btn.btn-danger.btn-lg(type='button', class='delete-button', data-id = doc.id, data-toggle='modal', data-target='#delete-modal')
+                  i.fa.fa-lg.fa-trash-o(data-toggle='tooltip', title='Delete')
+                  | Delete this network
+          div.tab-pane.fade(id="json-panel")
+            div.panel-body
+              each jsonID in doc.jsonStringID
+                //- ul(style="text-align:center;")
+                //- div.alert.alert-info
+                //- a.list-group-item.list-group-item-success(href='../../load-from-json/' + jsonID, role='button')
+                //- i.fa.fa-pencil
+                //- li
+                p(style="text-align:center;") JSON ID: 
+                  i.fa.fa-download
+                  i.fa.fa-file-code-o
+                  a(href='/api/network-json/' + jsonID, role='button')
+                    | !{jsonID} 
+                  i.fa.fa-times
+                  //- i.fa.fa-thumb-tack
+                  //- i.fa.fa-paw
+                  //- i.fa.fa-html5
+                  //- i.fa.fa-code
+
+
+    div.col-lg-8
+      div.panel.panel-info(style='padding-left: 0; padding-right: 0;')
+        div.panel-heading.text-centered
+          h3.panel-title
+            strong Network #{doc.id} statistics
+        div.panel-body(style='padding-left: 0; padding-right: 0;')
+          ul.nav.nav-tabs
+            li.active
+              a(data-toggle="tab" href="#panel1")
+                h3.panel-title(style='padding: 0')
+                  i.fa.fa-line-chart
+                  | Progress
+            li
+              a(data-toggle="tab" href="#panel2")
+                h3.panel-title(style='padding: 0')
+                  i.fa.fa-bar-chart-o
+                  | Performance 
+            li
+              a(data-toggle="tab" href="#panel3")
+                h3.panel-title(style='padding: 0')
+                  i.fa.fa-pie-chart
+                  | Statistics
+            li
+              a(data-toggle="tab" href="#panel4")
+                h3.panel-title(style='padding: 0')
+                  i.fa.fa-share-alt
+                  | Network graph
+            //- li.dropdown
+            //-   a(data-toggle="dropdown" class="dropdown-toggle" href="#")
+            //-     h3.panel-title(style='padding: 0')
+            //-       i.fa.fa-tasks
+            //-       | more panels
+            //-       b.caret
+            //-   ul.dropdown-menu
+            //-     li
+            //-       a(data-toggle="tab" href="#panel3") panel3
+            //-     li
+            //-       a(data-toggle="tab" href="#panel4") panel4
+          div.tab-content(id='container')
+            div.tab-pane.fade.in.active(id="panel1")
+              div.panel-body(id='container1', data-id=doc.id)
+            div.tab-pane.fade(id="panel2")
+              div.panel-body(id='container2')
+            div.tab-pane.fade(id="panel3")
+              div.panel-body(id='container3')
+            div.tab-pane.fade(id="panel4")
+              div.panel-body(id='container4')
+                svg(id='graph-container', width='100%')
+
+    div(id='delete-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='delete-modal-title' aria-hidden='true')
+      div.modal-dialog(role='document')
+        div.modal-content
+          div.modal-header
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title(id='delete-modal-title') Delete Network
+          div.modal-body
+            p(id='confirmation-text') Are you sure you want to delete this Network?
+            p.text-warning
+              small This action cannot be undone.
+          div.modal-footer
+            button.btn.btn-default(id='cancel-btn', type='button', data-dismiss='modal') Cancel
+            button.btn.btn-danger(id='confirm-btn', type='button', data-dismiss='modal',
+              data-toggle='modal', data-target='#response-modal') Delete
+    div(id='response-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='response-modal-title' aria-hidden='true')
+      div.modal-dialog(role='document')
+        div.modal-content
+          div.modal-header
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title(id='response-modal-title') Server response
+          div.modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Ok
+    script(src='/js/network.js')

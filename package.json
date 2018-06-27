@@ -1,0 +1,35 @@
+{
+  "name": "mlp-generator",
+  "version": "0.0.2",
+  "description": "An artifitial neural network creator in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lure-of-Lysergide/mlp-generator.git"
+  },
+  "author": "Nita Radu <radu.nita@mail.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lure-of-Lysergide/mlp-generator/issues"
+  },
+  "homepage": "https://github.com/Lure-of-Lysergide/mlp-generator#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "brain.js": "^1.1.2",
+    "compression": "^1.7.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.17",
+    "morgan": "^1.9.0",
+    "node-sass-middleware": "^0.11.0",
+    "npm": "^6.0.0",
+    "pug": "^2.0.3"
+  }
+}

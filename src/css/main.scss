@@ -1,0 +1,296 @@
+@import "themes/default/variables";
+@import "lib/bootstrap/bootstrap";
+@import "lib/font-awesome/font-awesome";
+@import "themes/default/default";
+// @import "lib/jquery.data-tables.min";
+// $border-radius-base: 0px;
+// $border-radius-small: 0px;
+// $border-radius-large: 0px;
+
+// DataTables redesign
+// -------------------------
+// .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+//   color: white !important;
+//   border: 1px solid #2980B9!important;
+//   background-color: #2980B9!important;
+//   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2980B9), color-stop(100%, #2980B9))!important;
+//   background: -webkit-linear-gradient(top, #2980B9 0%, #2980B9 100%)!important;
+//   background: -moz-linear-gradient(top, #2980B9 0%, #2980B9 100%)!important;
+//   background: -ms-linear-gradient(top, #2980B9 0%, #2980B9 100%)!important;
+//   background: -o-linear-gradient(top, #2980B9 0%, #2980B9 100%)!important;
+//   background: linear-gradient(to bottom, #2980B9 0%, #2980B9 100%)!important;
+// }
+table.data-table thead {
+  // color: #f6f4f5; // white hell
+  // color: #bfbbb5; // creme?
+  // background-color: #877a79; // another creme?
+  // background-color: #a95221; // creme-brule? bad
+  // background-color: #301c0c; // wood? bad
+  // background-color: #34495E; // WET ASFALT
+  // background-color: #2C3E50; // MIDNIGHT BLUE
+  // background-color: #ECF0F1; // CLOUDS
+  // background-color: #BDC3C7; // SILVER
+  background-color: #95A5A6; // CONCRETE
+  // background-color: #7F8C8D; // ASBESTOS
+  color: #ECF0F1; // CLOUDS
+}
+table.data-table thead th {
+  text-align: center;
+  position: relative;
+  background-image: none !important;
+}
+table.data-table thead th.sorting:after,
+table.data-table thead th.sorting_asc:after,
+table.data-table thead th.sorting_desc:after {
+  position: absolute;
+  // top: 12px;
+  top: 30px;
+  right: 6px;
+  display: block;
+  font-family: FontAwesome;
+}
+table.data-table thead th.sorting:after {
+  content: "\f0dc";
+  // color: #8d8d8d;
+  color: #301c0c;
+  font-size: 0.8em;
+  padding-top: 0.12em;
+}
+table.data-table thead th.sorting_asc:after {
+  content: "\f0de";
+}
+table.data-table thead th.sorting_desc:after {
+  content: "\f0dd";
+}
+table.data-table tbody td {
+  text-align: center;
+  vertical-align: top;
+}
+// .cell-text {
+//   // display: block;
+//   margin: 0 auto;
+//   text-align: center;
+//   // margin-top:-50px;
+// }
+
+// Centered columns
+// -------------------------
+.text-centered{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+div.form-group {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// Addaptive svg
+// -------------------------
+svg {
+  max-width: 100%;
+  width: 100%;
+  min-height: 400px;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  left: -0.5px;
+}
+
+// Scaffolding
+// -------------------------
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  padding-top: 60px;
+  margin-bottom: 75px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  p, ul {
+    margin-bottom: 0;
+  }
+}
+
+// Input Fields
+// -------------------------
+textarea {
+  resize: vertical;
+}
+
+// Navbar
+// -------------------------
+.navbar-nav img {
+  width: 30px;
+  height: 30px;
+  margin: -15px 15px -15px;
+}
+
+// Alerts
+// -------------------------
+.alert {
+  margin-top: 20px;
+}
+
+// Thumbnails
+// -------------------------
+.thumbnail {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: 0 0 5px #ccc, inset 0 0 0 #000;
+}
+
+// Font Icons
+// -------------------------
+.fa {
+  margin-right: 6px;
+}
+
+// Round Buttons
+// -------------------------
+.round-button {
+  display: block;
+  position: relative; 
+  text-align: center;
+  margin: auto;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  // text-decoration:none;
+  // font-weight: bold;
+  // border: 2px solid white;
+  // margin: 10px;
+  // color:#f5f5f5;
+  // box-shadow: 0 0 3px gray;
+  padding: 0px 6px;
+  font-size: 22px;
+  width:35px;
+  height:35px;
+}
+.trash-button {
+  padding: 0px 8px;
+  font-size: 25px;
+  width:35px;
+  height:35px;
+}
+.small-button{
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-left: 10px;
+  padding: 0px 0px;
+  font-size: 14px;
+  width:18px;
+  height:18px;
+}
+.round-button:active {
+  position:relative;
+	top:1px;
+}
+.round-button.succes {
+  background: #2ECC71; // EMERALD (Flat UI)
+}
+.round-button.succes:hover {
+  // background: #007E33; // success-color-dark;
+  background: #27AE60 // NEPRITIS (Flat UI)
+}
+.round-button.danger {
+  background: #E74C3C; // ALIZARIN (Flat UI)
+}
+.round-button.danger:hover {
+  // background: #007E33; // success-color-dark;
+  background: #C0392B; // POMEGRANATE (Flat UI)
+}
+.round-button.blue-button {
+  background-color: DodgerBlue;
+}
+.round-button.blue-button:hover {
+  background-color: RoyalBlue;
+}
+.round-button.good-button {
+  background-color: #1ABC9C; // TURQUOISE
+}
+.round-button.good-button:hover {
+  background-color: #16A085; // GREEN SEA
+}
+.round-button.warn-button {
+  background-color: #F1C40F; // SUN FLOWER
+}
+.round-button.warn-button:hover {
+  background-color: #F39C12; // ORANGE
+}
+.round-button.river-button {
+  background-color: #3498DB; // PETERMANN RIVER
+}
+.round-button.river-button:hover {
+  background-color: #2980B9; // BELIZE HOLE
+}
+.round-button.violet-button {
+  background-color: #9B59B6; // AMETHYST
+}
+.round-button.violet-button:hover {
+  background-color: #8E44AD; // WISTERIA
+}
+.round-button.orange-button {
+  background-color: #E67E22; // CARROT
+}
+.round-button.orange-button:hover {
+  background-color: #D35400; // PUMPKIN
+}
+
+// button,
+// button:active,
+// button:focus, 
+// button:hover,
+// .btn,
+// .btn:active, 
+// .btn:focus, 
+// .btn:hover{   
+//     outline:none !important;
+// }
+
+// .button1 {background-color: #4CAF50;} /* Green */
+// .button2 {background-color: #008CBA;} /* Blue */
+// .button3 {background-color: #f44336;} /* Red */
+// .button4 {background-color: #e7e7e7; color: black;} /* Gray */
+// .button5 {background-color: #555555;} /* Black */
+
+// .button {
+//   -webkit-transition-duration: 0.4s; /* Safari */
+//   transition-duration: 0.4s;
+// }
+
+// .button:hover {
+//   background-color: #4CAF50; /* Green */
+//   color: white;
+// }
+
+// .button2:hover {
+//   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+// }
+
+ /* Style buttons */
+// .fa-btn {
+//   background-color: #4CAF50; /* Blue background */
+//   border: none; /* Remove borders */
+//   color: white; /* White text */
+//   // padding: 12px 16px; /* Some padding */
+  // padding: 3px 3px;
+  // font-size: 20px; /* Set a font size */
+  // cursor: pointer; /* Mouse pointer on hover */
+  // border-radius: 50%;
+  // width:32px;
+  // height:32px;
+//   text-shadow: 0 3px 0 0 #007299;
+//   // filter: drop-shadow;
+// }
+
+/* Darker background on mouse-over */
+

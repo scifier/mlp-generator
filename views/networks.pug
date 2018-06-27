@@ -1,0 +1,113 @@
+extends ./partials/layout
+block content
+    script(src='/lib/datatables/jquery.dataTables.min.js')
+    link(rel='stylesheet', href='/lib/datatables/jquery.dataTables.min.css')
+    script(src='/lib/datatables/dataTables.responsive.min.js')
+    link(rel='stylesheet', href='/lib/datatables/responsive.bootstrap.min.css')
+    script(src='/js/ajax.js')
+
+    div.container
+      table.display.table-bordered.data-table(id='data-table')
+        caption List of all networks
+        thead
+          tr
+            th(scope='col') ID
+            th(scope='col') Activation
+            th(scope='col') Hidden layers
+            th(scope='col') Learning rate
+            th(scope='col') Momentum
+            th(scope='col') Iterations
+            th(scope='col') Error / Error Threshold
+            th(scope='col') False Positive
+            th(scope='col') False Negative
+            th(scope='col') Last log
+            th(scope='col') Status
+            th(scope='col') Description
+
+        tbody
+          each network in docs
+            tr
+              th(scope='row')
+                a(href='../network/' + network.id, role='button')
+                  | #{network.id.substr(0,8)} #{network.id.substr(8,8)} #{network.id.substr(16,8)}
+                button.round-button.trash-button.danger(type='button', class='delete-button', data-id = network.id, data-toggle='modal', data-target='#delete-modal')
+                  i.fa.fa-trash-o(data-toggle='tooltip', title='Delete')
+              td
+                .cell-text #{network.activation}
+              td
+                .cell-text #{network.hiddenLayers}
+                button.round-button.violet-button(type='button')
+                  i.fa.fa-share-alt(data-id: network.id, data-toggle='tooltip', title='Network architecture')
+              td
+                .cell-text #{network.learningRate}
+              td
+                .cell-text #{network.momentum}
+              td
+                .cell-text #{network.trainingIterations[network.trainingIterations.length-1] || 0} / #{network.iterations}; 
+                button.round-button.river-button(type='button')
+                    i.fa.fa-line-chart
+              td
+                if network.trainingErrors[network.trainingErrors.length-1]
+                  .cell-text #{network.trainingErrors[network.trainingErrors.length-1].toFixed(6)} / #{network.errorThresh};
+                else
+                  .cell-text ... / #{network.errorThresh};
+                button.round-button.orange-button(type='button')
+                  i.fa.fa-bar-chart
+              td
+                if network.falsePositive[network.falsePositive.length-1]
+                  .cell-text #{network.falsePositive[network.falsePositive.length-1]} 
+                button.round-button.good-button(type='button')
+                  i.fa.fa-pie-chart
+              td
+                if network.falseNegative[network.falseNegative.length-1]
+                  .cell-text #{network.falseNegative[network.falseNegative.length-1]}
+
+              td
+                if network.loggedAt[network.loggedAt.length-1]
+                  .cell-text #{network.loggedAt[network.loggedAt.length-1].toJSON().slice(0,10).split('-').reverse().join('/')} (#{network.loggedAt[network.loggedAt.length-1].toLocaleTimeString()});
+                //- else
+                //-   .cell-text no logs...
+              td
+                if (network.status === 'waiting') || (network.status === 'processing')
+                  .cell-text
+                    i.fa.fa-spin.fa-spinner
+                    | &nbsp; #{network.status}
+                if network.status === 'processed'
+                  .cell-text
+                    i.fa.fa-check
+                    | &nbsp; #{network.status}
+                if network.status === 'unprocessed'
+                  .cell-text
+                    i.fa.fa-times
+                    | &nbsp; #{network.status}
+                //- else
+                //-   .cell-text #{network.status}
+              td
+                .cell-text #{network.description || ' no description'}
+
+    div(id='delete-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='delete-modal-title' aria-hidden='true')
+      div.modal-dialog(role='document')
+        div.modal-content
+          div.modal-header
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title(id='delete-modal-title') Delete Network
+          div.modal-body
+            p(id='confirmation-text') Are you sure you want to delete this Network?
+            p.text-warning
+              small This action cannot be undone.
+          div.modal-footer
+            button.btn.btn-default(id='cancel-btn', type='button', data-dismiss='modal') Cancel
+            button.btn.btn-danger(id='confirm-btn', type='button', data-dismiss='modal',
+              data-toggle='modal', data-target='#response-modal') Delete
+    div(id='response-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='response-modal-title' aria-hidden='true')
+      div.modal-dialog(role='document')
+        div.modal-content
+          div.modal-header
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+            h4.modal-title(id='response-modal-title') Server response
+          div.modal-footer
+            button.btn.btn-secondary(type='button', data-dismiss='modal') Ok
+
+    script(src='/js/networks.js')

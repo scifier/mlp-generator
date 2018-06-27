@@ -1,0 +1,99 @@
+extends ./partials/layout
+block content
+    script(src='/lib/d3/d3.v4.min.js')
+    script(src='/lib/d3/d3-selection-multi.v1.js')
+    script(src='/js/ajax.js')
+
+    form.form-horizontal(action='../network', method='POST')
+      //- input(type='hidden', name='_csrf', value=_csrf)
+      div.row
+        div.col-sm-2
+          label.control-label(for='dataset') Dataset
+          select.form-control(name='dataset', id='dataset')
+            option(value='default', selected=true)
+            option(value='spambase') Spambase dataset (from UCI ML Repository)
+            //- PLACE FOR 'UPLOAD DATASET' (OR 'LOAD DATASET' from existed) BUTTON
+            //- OR LOADING FROM JSON
+            //- FOR SELECT: select
+            //- each item in db
+            //- option(value=item.id) #{item.name} (ID: #{item.id})
+        div.col-sm-2
+          .form-group.text-centered
+            label.control-label(for='inputLayer') Input layer
+            input.layer.form-control(type='text', autofocus,
+              name='inputLayer', id='inputLayer', placeholder='neurons')
+
+        div.col-sm-6
+          .form-group.form-inline.text-centered
+            label.control-label(for='hiddenLayer-0') Hidden layers
+              button.round-button.small-button.succes(type='button', id='plus-btn')
+                i.fa.fa-plus.fa-fw
+              button.round-button.small-button.danger(type='button', id='minus-btn')
+                i.fa.fa-minus.fa-fw
+            div(id='hiddenLayerArray')
+
+        div.col-sm-2
+          .form-group.text-centered
+            label.control-label(for='outputLayer') Output layer
+            input.layer.form-control(type='text', autofocus,
+              name='outputLayer', id='outputLayer', placeholder='neurons')
+
+      div.row
+        div.col-sm-2(id='options-container')
+          .form-group networkOptions
+            label.control-label(for='description') Network description
+            input.form-control(type='text', autofocus,
+              name='description', id='description', placeholder='Network description')
+            label.control-label(for='activation') Activation
+            select.form-control(name='activation', id='activation')
+              option(value='sigmoid', selected=true) sigmoid
+              option(value='relu') relu
+              option(value='leaky-relu') leaky-relu
+              option(value='tanh') tanh
+          .form-group trainingOptions
+            label.control-label(for='iterations') Iterations
+            input.form-control(type='text', autofocus, placeholder='default', value=null,
+              name='iterations', id='iterations')
+            label.control-label(for='errorThresh') errorThresh
+            input.form-control(type='text', autofocus, placeholder='default', value=null,
+              name='errorThresh', id='errorThresh')
+            label.control-label(for='learningRate') learningRate
+            input.form-control(type='text', autofocus, placeholder='default', value=null,
+              name='learningRate', id='learningRate')
+            label.control-label(for='momentum') momentum
+            input.form-control(type='text', autofocus, placeholder='default', value=null,
+              name='momentum', id='momentum')
+        div.col-sm-10(id='svg-container')
+          //- svg.col-sm-12(width='750', height='400', id='graph-container', viewBox='0 0 400 700')
+          svg(id='graph-container', width='100%')
+              //- height='400')
+              //- div.outer              
+                <svg id='graph-container' version='1.1' width='100%' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' preserveAspectRatio='xMinYMin' style='overflow: hidden; position: relative; left: -0.5px;' class='stretchBar'>
+      div.row
+        div.col-sm-2
+          .form-group
+            button.btn.btn-primary(type='button', id='post-btn', data-toggle='modal', data-target='#post-modal')
+              i.fa.fa-plus
+              | Add new Network
+      div(class='modal fade' id='post-modal' tabindex='-1' role='dialog' aria-labelledby='post-modal-title' aria-hidden='true')
+        div.modal-dialog(role='document')
+          div.modal-content
+            div.modal-header
+              button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+              h4.modal-title(id='post-modal-title') Response from server
+            div.modal-body
+              form
+                //- div.form-group
+                //-   label.form-control-label(for='recipient-name') Recipient:
+                //-   input.form-control(type='text', id='recipient-name')
+                div.form-group
+                  //- label.form-control-label(for='message-text') Message
+                  //- textarea.form-control(id='message-text')
+                  //- label.form-control-label(for='ajax-response') Response from server:
+                  textarea.form-control(id='post-modal-textarea')
+            div.modal-footer
+              button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+              //- button.btn.btn-primary(type='button') Send message
+
+    script(src='/js/network-form.js')

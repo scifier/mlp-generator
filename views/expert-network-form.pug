@@ -1,0 +1,52 @@
+extends ./partials/layout
+block content
+    script(src='/js/ajax.js')
+    div.alert.alert-info
+      a(href="#" class="close" data-dismiss="alert") &times;
+      strong Example of correct JSON:
+      br
+      |{
+      br
+      |&nbsp; "1":{"activation":"relu"},
+      br
+      |&nbsp; "2":{"activation":"leaky-relu",
+      br
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "hiddenLayers":[24],
+      br
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "iterations":20000,
+      br
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "errorThresh":0.0005,
+      br
+      |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "learningRate":0.001},
+      br
+      |&nbsp; "3":{}
+      br
+      |}
+    form.form-horizontal(action='../network', method='POST')
+      div.row
+        div.col-sm-12
+          .form-group
+            label.form-control-label(for='json-form') JSON:
+            textarea.form-control(id='json-form')
+      div.row
+      div.row
+        div.col-sm-2
+          .form-group
+            button.btn.btn-primary(type='button', id='post-btn', data-toggle='modal', data-target='#post-modal')
+              i.fa.fa-plus
+              | Add new Networks
+
+      div(id='post-modal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='post-modal-title' aria-hidden='true')
+        div.modal-dialog(role='document')
+          div.modal-content
+            div.modal-header
+              button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+              h4.modal-title(id='post-modal-title') Response from server
+            div.modal-body
+              form
+                div.form-group
+                  textarea.form-control(id='post-modal-textarea')
+            div.modal-footer
+              button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+    script(src='/js/expert-network-form.js')
