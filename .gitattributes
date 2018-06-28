@@ -1,0 +1,31 @@
+# Helping linguist to identify the repo language
+src/css/lib/* linguist-vendored
+src/css/themes/* linguist-vendored
+public/lib/* linguist-vendored
+public/css/* linguist-generated
+
+# Dealing with line endings
+* text=auto
+*.* text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.pyc binary
+*.pdf binary
+*.ez binary
+*.bz2 binary
+*.swp binary
