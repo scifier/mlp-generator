@@ -80,7 +80,7 @@ Back-end:
   - [ ] Rewrite the [db middleware](middlewares/db.js)
   - [ ] Add functionality for uploading datasets to server
   - [ ] Add functionality for editing datasets
-  - [ ] Extend readable dataset formats to *.json, *.csv, *.xls
+  - [ ] Extend readable dataset formats to *.json, *.xml, *.csv, *.tsv, *.xls etc.
 - [ ] Review the [Network Controller](controllers/network.js) and reorganize the async code (maybe with `Rx.js`)
 - [ ] Add functionality for continue training after 
 - [ ] Add functionality for listing and deleting Weights (without Networks) in DB
@@ -133,7 +133,7 @@ Front-end:
 
 ## Versioning
 
-This project use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+This project use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Lure-of-Lysergide/mlp-generator/tags). 
 
 ## Authors
 
