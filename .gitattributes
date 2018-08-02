@@ -4,7 +4,6 @@ src/css/themes/* linguist-vendored
 public/lib/* linguist-vendored
 public/css/* linguist-generated
 docs/* linguist-documentation
-*.data linguist-language=CSV
 
 # Dealing with line endings
 * text=auto
