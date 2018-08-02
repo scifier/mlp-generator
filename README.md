@@ -76,13 +76,15 @@ Front-end:
 
 Back-end:
 - [ ] Deploy
-- [ ] Add functionality for multiple dataset processing
+- [ ] Add functionality for multiple dataset processing :
   - [ ] Rewrite the [db middleware](middlewares/db.js)
   - [ ] Add functionality for uploading datasets to server
   - [ ] Add functionality for editing datasets
   - [ ] Extend readable dataset formats to *.json, *.xml, *.csv, *.tsv, *.xls etc.
-- [ ] Review the [Network Controller](controllers/network.js) and reorganize the async code (maybe with `Rx.js`)
-- [ ] Add functionality for continue training after 
+- [ ] Review the [Network Controller](controllers/network.js) :
+  - [ ] Reorganize the async code (maybe with `Rx.js`)
+  - [ ] Implement dataset randomization
+- [ ] Add functionality for continue training after server crash
 - [ ] Add functionality for listing and deleting Weights (without Networks) in DB
 - [ ] Add functionality for converting images to textual datasets
 
@@ -123,13 +125,11 @@ Front-end:
 | **public**/**js**/          | Client-side JavaScript                             |
 | **public**/**lib**/         | Client-side JavaScript dependencies                |
 | **src**/**css**/            | Bootstrap, Font-Awesome and some themes            |
-| **src**/**css**/main.scss   | Main style overrids file                           |
+| **src**/**css**/main.scss   | Main style overrides                               |
 | **views**/                  | Pug templates for each page                        |
 | **views**/**partials**/     | Base layout, navbar and footer partial templates   |
 | index.js                    | The entry point of application with cluster module |
 | server.js                   | The Express server and route definitions           |
-| package.json                | NPM dependencies                                   |
-| package-lock.json           | Exact versions of NPM dependencies                 |
 
 ## Versioning
 
