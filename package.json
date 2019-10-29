@@ -28,7 +28,7 @@
     "brain.js": "^1.1.2",
     "compression": "^1.7.2",
     "express": "^4.16.3",
-    "mongoose": "^5.0.17",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.0",
     "node-sass-middleware": "^0.11.0",
     "npm": "^6.0.0",
